@@ -1,6 +1,8 @@
 # == Class: carbon_c_relay
 #
-# Full description of class carbon_c_relay here.
+# Installs, configures and manages carbon-c-relay service.
+# Carbon-c-relay is an enhanced C implementation of Carbon relay, aggregator
+# and rewriter.
 #
 # === Parameters
 #
