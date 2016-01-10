@@ -4,36 +4,45 @@
 #
 # === Parameters
 #
-# Document parameters here.
+# [*package_ensure*]
+#   Specifies what state the package should be in.
+#   Valid values: present, installed, absent, purged, held, latest.
+#   Defaults to: present
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [*package_manage*]
+#   Specify if the package should be managed by this module.
+#   Defaults to: true
 #
-# === Variables
+# [*package_name*]
+#   Specify the name this package.
+#   Defaults to: 'carbon-c-relay'.
 #
-# Here you should define a list of variables that this module would require.
+# [*service_enable*]
+#   Specify if the service should be enabled to start at boot.
+#   Valid values: true, false, manual, mask.
+#   Defaults to: true
 #
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
+# [*service_ensure*]
+#   Specify if the service should be running.
+#   Valid values: stopped, running.
+#   Defaults to: 'running'
+#
+# [*service_manage*]
+#   Specify if the service should be managed by this module.
+#   Defaults to: true
+#
+# [*service_name*]
+#   Specifies the name of the service to run
+#   Defaults to: 'ccrelay'
 #
 # === Examples
 #
-#  class { 'carbon_c_relay':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#  }
+# * Installation, make sure service is running and will be started at boot time:
+#  class { 'carbon_c_relay': }
 #
 # === Authors
 #
 # Marc Lambrichs <marc.lambrichs@gmail.com>
-#
-# === Copyright
-#
-# Copyright 2016 Marc Lambrichs
 #
 class carbon_c_relay (
   $package_ensure = $carbon_c_relay::params::package_ensure,
