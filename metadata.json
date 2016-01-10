@@ -1,0 +1,14 @@
+{
+  "name": "puppet-carbon_c_relay",
+  "version": "0.1.0",
+  "author": "Marc Lambrichs",
+  "summary": "Enhanced C implementation of Carbon relay, aggregator and rewriter",
+  "license": "Apache 2.0",
+  "source": "https://github.com/mlambrichs/puppet-carbon_c_relay.git",
+  "project_page": "https://github.com/mlambrichs/puppet-carbon_c_relay.git",
+  "issues_url": "https://github.com/mlambrichs/puppet-carbon_c_relay/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
