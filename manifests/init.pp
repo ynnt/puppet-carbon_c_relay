@@ -29,13 +29,33 @@
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Marc Lambrichs <marc.lambrichs@gmail.com>
 #
 # === Copyright
 #
-# Copyright 2016 Your name here, unless otherwise noted.
+# Copyright 2016 Marc Lambrichs
 #
-class carbon_c_relay {
+class carbon_c_relay (
+  $package_ensure = $carbon_c_relay::params::package_ensure,
+  $package_manage = $carbon_c_relay::params::package_manage,
+  $package_name   = $carbon_c_relay::params::package_name,
+  $service_enable = $carbon_c_relay::params::service_enable,
+  $service_ensure = $carbon_c_relay::params::service_ensure,
+  $service_manage = $carbon_c_relay::params::service_manage,
+  $service_name   = $carbon_c_relay::params::service_name
+) inherits carbon_c_relay::params {
 
+  validate_string($package_ensure)
+  validate_bool($package_manage)
+  validate_string($package_name)
+  validate_bool($service_enable)
+  validate_string($service_ensure)
+  validate_bool($service_manage)
+  validate_string($service_name)
 
+  anchor { 'carbon_c_relay::begin': } ->
+  class { '::carbon_c_relay::install': } ->
+  class { '::carbon_c_relay::config': } ~>
+  class { '::carbon_c_relay::service': } ->
+  anchor { 'carbon_c_relay::end': }
 }
