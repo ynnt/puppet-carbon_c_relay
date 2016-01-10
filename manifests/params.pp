@@ -6,5 +6,5 @@ class carbon_c_relay::params {
   $service_enable = true
   $service_ensure = 'runnning'
   $service_manage = true
-  $service_name   = $module_name
+  $service_name   = 'ccrelay'
 }
