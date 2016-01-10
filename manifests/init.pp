@@ -6,6 +6,18 @@
 #
 # === Parameters
 #
+# [*config_file*]
+# Specifies where carbon-c-relay reads it's config settings.
+#
+# [*interface*]
+# Specify on which interface (or all interfaces) carbon-c-relay should listen.
+#
+# [*listen*]
+# Specify on which port carbon-c-relay should listen.
+#
+# [*ouput_file*]
+# Specify to which file carbon-c-relay should redirect its output
+#
 # [*package_ensure*]
 #   Specifies what state the package should be in.
 #   Valid values: present, installed, absent, purged, held, latest.
@@ -18,6 +30,10 @@
 # [*package_name*]
 #   Specify the name this package.
 #   Defaults to: 'carbon-c-relay'.
+#
+# [*server_batch_size*]
+#
+# [*server_queue_size*]
 #
 # [*service_enable*]
 #   Specify if the service should be enabled to start at boot.
@@ -37,6 +53,11 @@
 #   Specifies the name of the service to run
 #   Defaults to: 'ccrelay'
 #
+# [*statistics_sending_interval*]
+# Specify the number of seconds between sending data
+#
+# [*worker_threads*]
+#
 # === Examples
 #
 # * Installation, make sure service is running and will be started at boot time:
@@ -47,22 +68,35 @@
 # Marc Lambrichs <marc.lambrichs@gmail.com>
 #
 class carbon_c_relay (
-  $package_ensure = $carbon_c_relay::params::package_ensure,
-  $package_manage = $carbon_c_relay::params::package_manage,
-  $package_name   = $carbon_c_relay::params::package_name,
-  $service_enable = $carbon_c_relay::params::service_enable,
-  $service_ensure = $carbon_c_relay::params::service_ensure,
-  $service_manage = $carbon_c_relay::params::service_manage,
-  $service_name   = $carbon_c_relay::params::service_name
+  $config_file       = $carbon_c_relay::params::config_file,
+  $interface         = $carbon_c_relay::params::interface,
+  $listen            = $carbon_c_relay::params::listen,
+  $output_file       = $carbon_c_relay::params::output_file,
+  $package_ensure    = $carbon_c_relay::params::package_ensure,
+  $package_manage    = $carbon_c_relay::params::package_manage,
+  $package_name      = $carbon_c_relay::params::package_name,
+  $server_batch_size = $carbon_c_relay::params::server_batch_size,
+  $server_queue_size = $carbon_c_relay::params::server_queue_size,
+  $service_enable    = $carbon_c_relay::params::service_enable,
+  $service_ensure    = $carbon_c_relay::params::service_ensure,
+  $service_manage    = $carbon_c_relay::params::service_manage,
+  $service_name      = $carbon_c_relay::params::service_name,
+  $worker_threads    = $carbon_c_relay::params::worker_threads
 ) inherits carbon_c_relay::params {
 
+  validate_string($config_file)
+  validate_string($interface)
+  validate_int($listen)
   validate_string($package_ensure)
   validate_bool($package_manage)
   validate_string($package_name)
+  validate_int($server_batch_size)
+  validate_int($server_queue_size)
   validate_bool($service_enable)
   validate_string($service_ensure)
   validate_bool($service_manage)
   validate_string($service_name)
+  validate_int($worker_threads)
 
   anchor { 'carbon_c_relay::begin': } ->
   class { '::carbon_c_relay::install': } ->
