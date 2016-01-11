@@ -6,7 +6,7 @@ class carbon_c_relay::service inherits carbon_c_relay {
   }
 
   if $carbon_c_relay::service_manage == true {
-    exec { "systemd_reload_${name}":
+    exec { "systemd_reload":
       command     => '/bin/systemctl daemon-reload',
       refreshonly => true,
     }
