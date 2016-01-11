@@ -9,6 +9,9 @@
 # [*config_file*]
 # Specifies where carbon-c-relay reads it's config settings.
 #
+# [*init_string*]
+# Specifies the systemd init string
+#
 # [*init_template*]
 # Specifies the systemd init template
 #
@@ -77,6 +80,7 @@
 class carbon_c_relay (
   $config_file       = $carbon_c_relay::params::config_file,
   $group             = $carbon_c_relay::params::group,
+  $init_file         = $carbon_c_relay::params::init_file,
   $init_template     = $carbon_c_relay::params::init_template,
   $interface         = $carbon_c_relay::params::interface,
   $listen            = $carbon_c_relay::params::listen,
