@@ -3,6 +3,7 @@ class carbon_c_relay::params {
   $config_file                 = '/etc/carbon-c-relay.conf'
   $group                       = 'carbon-c-relay'
   $init_file                   = '/etc/systemd/system/carbon-c-relay.service'
+  $init_file_ensure            = 'file'
   $init_template               = "carbon_c_relay/${init_file}.erb"
   $interface                   = 'all'
   $listen                      = 2003

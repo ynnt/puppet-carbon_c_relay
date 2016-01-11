@@ -9,6 +9,16 @@
 # [*config_file*]
 # Specifies where carbon-c-relay reads it's config settings.
 #
+# [*init_file*]
+# Specifies the name of the init file
+#
+# [*init_file_ensure*]
+# Specifies whether the init file should exist, and if so what kind.
+# Default value: present
+#
+# [*init_template*]
+# Specifies the path of the template that is used.
+#
 # [*init_string*]
 # Specifies the systemd init string
 #
@@ -81,6 +91,7 @@ class carbon_c_relay (
   $config_file       = $carbon_c_relay::params::config_file,
   $group             = $carbon_c_relay::params::group,
   $init_file         = $carbon_c_relay::params::init_file,
+  $init_file_ensure  = $carbon_c_relay::params::init_file_ensure,
   $init_template     = $carbon_c_relay::params::init_template,
   $interface         = $carbon_c_relay::params::interface,
   $listen            = $carbon_c_relay::params::listen,
@@ -102,6 +113,9 @@ class carbon_c_relay (
   validate_string($config_file)
   validate_string($group)
   validate_string($interface)
+  validate_string($init_file)
+  validate_string($init_file_ensure)
+  validate_string($init_template)
   validate_integer($listen)
   validate_string($package_ensure)
   validate_bool($package_manage)

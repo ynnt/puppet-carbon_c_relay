@@ -8,7 +8,7 @@ class carbon_c_relay::service inherits carbon_c_relay {
   if $carbon_c_relay::service_manage == true {
 
     file { $carbon_c_relay::init_file:
-      ensure  => $carbon_c_relay::service_ensure,
+      ensure  => $carbon_c_relay::init_file_ensure,
       content => template($carbon_c_relay::init_template),
       before  => Service[$carbon_c_relay::service_name],
       notify  => Service[$carbon_c_relay::service_name]
