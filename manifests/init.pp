@@ -31,6 +31,10 @@
 #   Specify the name this package.
 #   Defaults to: 'carbon-c-relay'.
 #
+# [*pid_dir*]
+#   Specify the directory where the pid file will be written
+#   Defaults to: /var/run/carbon-c-relay
+#
 # [*server_batch_size*]
 #
 # [*server_queue_size*]
@@ -69,34 +73,40 @@
 #
 class carbon_c_relay (
   $config_file       = $carbon_c_relay::params::config_file,
+  $group             = $carbon_c_relay::params::group,
   $interface         = $carbon_c_relay::params::interface,
   $listen            = $carbon_c_relay::params::listen,
   $output_file       = $carbon_c_relay::params::output_file,
   $package_ensure    = $carbon_c_relay::params::package_ensure,
   $package_manage    = $carbon_c_relay::params::package_manage,
   $package_name      = $carbon_c_relay::params::package_name,
+  $pid_dir           = $carbon_c_relay::params::pid_dir,
   $server_batch_size = $carbon_c_relay::params::server_batch_size,
   $server_queue_size = $carbon_c_relay::params::server_queue_size,
   $service_enable    = $carbon_c_relay::params::service_enable,
   $service_ensure    = $carbon_c_relay::params::service_ensure,
   $service_manage    = $carbon_c_relay::params::service_manage,
   $service_name      = $carbon_c_relay::params::service_name,
+  $user              = $carbon_c_relay::params::user,
   $worker_threads    = $carbon_c_relay::params::worker_threads
 ) inherits carbon_c_relay::params {
 
   validate_string($config_file)
+  validate_string($group)
   validate_string($interface)
-  validate_int($listen)
+  validate_integer($listen)
   validate_string($package_ensure)
   validate_bool($package_manage)
   validate_string($package_name)
-  validate_int($server_batch_size)
-  validate_int($server_queue_size)
+  validate_string($pid_dir)
+  validate_integer($server_batch_size)
+  validate_integer($server_queue_size)
   validate_bool($service_enable)
   validate_string($service_ensure)
   validate_bool($service_manage)
   validate_string($service_name)
-  validate_int($worker_threads)
+  validate_string($user)
+  validate_integer($worker_threads)
 
   anchor { 'carbon_c_relay::begin': } ->
   class { '::carbon_c_relay::install': } ->
