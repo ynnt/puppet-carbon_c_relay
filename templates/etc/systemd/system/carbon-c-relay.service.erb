@@ -3,10 +3,10 @@ Description=Starts and stops carbon-c-relay daemon
 After=network.target
 
 [Service]
-EnvironmentFile=/etc/sysconfig/<%= @name %>
+EnvironmentFile=/etc/sysconfig/<%= @service_name %>
 User=<%= @user %>
 Group=<%= @group %>
-PIDFile=<%= @pid_dir %>/<%= @name %>.pid
+PIDFile=<%= @pid_dir %>/<%= @service_name %>.pid
 ExecStart=/bin/carbon-c-relay -f <%= @config_file %>
 Type=forking
 
