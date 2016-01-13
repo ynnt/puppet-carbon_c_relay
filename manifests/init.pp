@@ -108,8 +108,8 @@ class carbon_c_relay (
   $service_ensure     = $carbon_c_relay::params::service_ensure,
   $service_manage     = $carbon_c_relay::params::service_manage,
   $service_name       = $carbon_c_relay::params::service_name,
-  $sysconfig_file     = $carbon_c_relay::params::sysonfig_file,
-  $sysconfig_template = $carbon_c_relay::params::sysonfig_template,
+  $sysconfig_file     = $carbon_c_relay::params::sysconfig_file,
+  $sysconfig_template = $carbon_c_relay::params::sysconfig_template,
   $user               = $carbon_c_relay::params::user,
   $worker_threads     = $carbon_c_relay::params::worker_threads
 ) inherits carbon_c_relay::params {
