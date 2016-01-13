@@ -14,7 +14,7 @@ class carbon_c_relay::service inherits carbon_c_relay {
       notify  => Service[$carbon_c_relay::service_name]
     }
 
-    service { $carbon_c_relay::service_name:
+    service { $carbon_c_relay::package_name:
       ensure     => $carbon_c_relay::service_ensure,
       enable     => $carbon_c_relay::service_enable,
       name       => $carbon_c_relay::service_name,
