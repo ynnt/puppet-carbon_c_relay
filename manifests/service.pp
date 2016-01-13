@@ -7,6 +7,14 @@ class carbon_c_relay::service inherits carbon_c_relay {
 
   if $carbon_c_relay::service_manage == true {
 
+    file { $carbon_c_relay::log_dir:
+      ensure => directory,
+      group  => $carbon_c_relay::group,
+      mode   => '0644',
+      owner  => $carbon_c_relay::user,
+      before => Service[$carbon_c_relay::service_name]
+    }
+
     file { $carbon_c_relay::init_file:
       ensure  => $carbon_c_relay::init_file_ensure,
       content => template($carbon_c_relay::init_template),
