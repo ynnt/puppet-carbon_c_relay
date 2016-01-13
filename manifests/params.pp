@@ -17,7 +17,7 @@ class carbon_c_relay::params {
   $service_enable              = true
   $service_ensure              = 'running'
   $service_manage              = true
-  $service_name                = $module_name
+  $service_name                = $package_name
   $statistics_sending_interval = 60
   $user                        = 'carbon-c-relay'
   $worker_threads              = 1
