@@ -88,26 +88,30 @@
 # Marc Lambrichs <marc.lambrichs@gmail.com>
 #
 class carbon_c_relay (
-  $config_file       = $carbon_c_relay::params::config_file,
-  $group             = $carbon_c_relay::params::group,
-  $init_file         = $carbon_c_relay::params::init_file,
-  $init_file_ensure  = $carbon_c_relay::params::init_file_ensure,
-  $init_template     = $carbon_c_relay::params::init_template,
-  $interface         = $carbon_c_relay::params::interface,
-  $listen            = $carbon_c_relay::params::listen,
-  $output_file       = $carbon_c_relay::params::output_file,
-  $package_ensure    = $carbon_c_relay::params::package_ensure,
-  $package_manage    = $carbon_c_relay::params::package_manage,
-  $package_name      = $carbon_c_relay::params::package_name,
-  $pid_dir           = $carbon_c_relay::params::pid_dir,
-  $server_batch_size = $carbon_c_relay::params::server_batch_size,
-  $server_queue_size = $carbon_c_relay::params::server_queue_size,
-  $service_enable    = $carbon_c_relay::params::service_enable,
-  $service_ensure    = $carbon_c_relay::params::service_ensure,
-  $service_manage    = $carbon_c_relay::params::service_manage,
-  $service_name      = $carbon_c_relay::params::service_name,
-  $user              = $carbon_c_relay::params::user,
-  $worker_threads    = $carbon_c_relay::params::worker_threads
+  $config_file        = $carbon_c_relay::params::config_file,
+  $group              = $carbon_c_relay::params::group,
+  $init_file          = $carbon_c_relay::params::init_file,
+  $init_file_ensure   = $carbon_c_relay::params::init_file_ensure,
+  $init_template      = $carbon_c_relay::params::init_template,
+  $interface          = $carbon_c_relay::params::interface,
+  $listen             = $carbon_c_relay::params::listen,
+  $log_dir            = $carbon_c_relay::params::log_dir,
+  $log_file           = $carbon_c_relay::params::log_file,
+  $output_file        = $carbon_c_relay::params::output_file,
+  $package_ensure     = $carbon_c_relay::params::package_ensure,
+  $package_manage     = $carbon_c_relay::params::package_manage,
+  $package_name       = $carbon_c_relay::params::package_name,
+  $pid_dir            = $carbon_c_relay::params::pid_dir,
+  $server_batch_size  = $carbon_c_relay::params::server_batch_size,
+  $server_queue_size  = $carbon_c_relay::params::server_queue_size,
+  $service_enable     = $carbon_c_relay::params::service_enable,
+  $service_ensure     = $carbon_c_relay::params::service_ensure,
+  $service_manage     = $carbon_c_relay::params::service_manage,
+  $service_name       = $carbon_c_relay::params::service_name,
+  $sysconfig_file     = $carbon_c_relay::params::sysonfig_file,
+  $sysconfig_template = $carbon_c_relay::params::sysonfig_template,
+  $user               = $carbon_c_relay::params::user,
+  $worker_threads     = $carbon_c_relay::params::worker_threads
 ) inherits carbon_c_relay::params {
 
   validate_string($config_file)
@@ -132,6 +136,7 @@ class carbon_c_relay (
 
   anchor { 'carbon_c_relay::begin': } ->
   class { '::carbon_c_relay::install': } ->
+  class { '::carbon_c_relay::sysconfig': } ->
   class { '::carbon_c_relay::config': } ~>
   class { '::carbon_c_relay::service': } ->
   anchor { 'carbon_c_relay::end': }

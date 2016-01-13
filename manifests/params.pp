@@ -7,6 +7,8 @@ class carbon_c_relay::params {
   $init_template               = "carbon_c_relay/${init_file}.erb"
   $interface                   = 'all'
   $listen                      = 2003
+  $log_dir                     = '/var/log/carbon-c-relay'
+  $log_file                    = 'carbon-c-relay.log'
   $output_file                 = undef
   $package_ensure              = present
   $package_manage              = true
@@ -19,6 +21,7 @@ class carbon_c_relay::params {
   $service_manage              = true
   $service_name                = $package_name
   $statistics_sending_interval = 60
+  $sysconfig_file              = '/etc/sysconfig/carbon-c-relay'
   $user                        = 'carbon-c-relay'
-  $worker_threads              = 1
+  $worker_threads              = 4
 }

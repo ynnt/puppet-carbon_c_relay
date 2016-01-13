@@ -1,5 +1,5 @@
 #
-class carbon_c_relay::config inherits carbon_c_relay {
+class carbon_c_relay::sysconfig inherits carbon_c_relay {
 
   file { $carbon_c_relay::sysconfig_file:
     ensure  => file,
@@ -7,4 +7,5 @@ class carbon_c_relay::config inherits carbon_c_relay {
     before  => Service[$carbon_c_relay::service_name],
     notify  => Service[$carbon_c_relay::service_name]
   }
+
 }
