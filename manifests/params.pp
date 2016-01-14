@@ -17,7 +17,7 @@ class carbon_c_relay::params {
   $server_batch_size           = 2500
   $server_queue_size           = 25000
   $service_enable              = true
-  $service_ensure              = 'running'
+  $service_ensure              = running
   $service_manage              = true
   $service_name                = $package_name
   $statistics_sending_interval = 60
