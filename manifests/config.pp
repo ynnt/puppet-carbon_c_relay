@@ -25,14 +25,6 @@ class carbon_c_relay::config inherits carbon_c_relay {
     hosts => [ '127.0.0.1:2013'],
   }
 
-  carbon_c_relay::config::rewrite { 'test':
-    from     =>
-      '^carbon\.relays\.([a-zA-Z]+)([0-9]+)_([a-zA-Z0-9]+)_([a-zA-Z0-9]+)_([a-zA-Z0-9]+)_([a-zA-Z0-9]+)\.(.*)',
-    into     => '\5.\4.\1.\1\2.relay.\7',
-    comments => [
-      'rewrite carbon c relay internal statistics',
-      'from carbon.relays.twiki501.back.test.bc.local.metricsQueued',
-      'into bc.test.twiki.twiki501.relay.metricsQueued'
-    ]
-  }
+  create_resources( 'carbon_c_relay::config::rewrite', $carbon_c_relay::config_rewrites)
+
 }

@@ -1,6 +1,7 @@
 #
 class carbon_c_relay::params {
   $config_file                 = '/etc/carbon-c-relay.conf'
+  $config_rewrites             = {}
   $group                       = 'carbon-c-relay'
   $init_file                   = '/etc/systemd/system/carbon-c-relay.service'
   $init_file_ensure            = 'file'

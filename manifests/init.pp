@@ -9,6 +9,9 @@
 # [*config_file*]
 # Specifies where carbon-c-relay reads it's config settings.
 #
+# [*config_rewrites*]
+# Specifies what rewrite rules are added to the config file
+#
 # [*init_file*]
 # Specifies the name of the init file
 #
@@ -89,6 +92,7 @@
 #
 class carbon_c_relay (
   $config_file        = $carbon_c_relay::params::config_file,
+  $config_rewrites    = $carbon_c_relay::params::config_rewrites,
   $group              = $carbon_c_relay::params::group,
   $init_file          = $carbon_c_relay::params::init_file,
   $init_file_ensure   = $carbon_c_relay::params::init_file_ensure,
