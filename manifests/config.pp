@@ -7,4 +7,18 @@ class carbon_c_relay::config inherits carbon_c_relay {
     notify  => Service[$carbon_c_relay::service_name]
   }
 
+  concat { $carbon_c_relay::config_file:
+    ensure => present,
+    owner  => root,
+    group  => root,
+    mode   => '0644',
+    notify => Service[$carbon_c_relay::service_name]
+  }
+ 
+  concat::fragment { 'header':
+    target  => $carbon_c_relay::config_file,
+    order   => '01',
+    content => "${carbon_c_relay::config_file}: Managed by Puppet."
+  }
+  
 }
