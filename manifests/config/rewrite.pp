@@ -2,7 +2,7 @@
 define carbon_c_relay::config::rewrite (
   $from     = undef,
   $into     = undef,
-  $comments = []
+  $comments = undef
 ){
 
   concat::fragment { "rewrite-${title}":
