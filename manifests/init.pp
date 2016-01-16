@@ -119,12 +119,16 @@ class carbon_c_relay (
 ) inherits carbon_c_relay::params {
 
   validate_string($config_file)
+  validate_hash($config_rewrites)
   validate_string($group)
-  validate_string($interface)
   validate_string($init_file)
   validate_string($init_file_ensure)
   validate_string($init_template)
+  validate_string($interface)
   validate_integer($listen)
+  validate_string($log_dir)
+  validate_string($log_file)
+  validate_string($output_file)
   validate_string($package_ensure)
   validate_bool($package_manage)
   validate_string($package_name)
@@ -135,6 +139,8 @@ class carbon_c_relay (
   validate_string($service_ensure)
   validate_bool($service_manage)
   validate_string($service_name)
+  validate_string($sysconfig_file)
+  validate_string($sysconfig_template)
   validate_string($user)
   validate_integer($worker_threads)
 
