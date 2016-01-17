@@ -17,7 +17,7 @@ class carbon_c_relay::config inherits carbon_c_relay {
 
   concat::fragment { 'header':
     target  => $carbon_c_relay::config_file,
-    order   => '01',
+    order   => '10',
     content => "# ${carbon_c_relay::config_file}: Managed by Puppet."
   }
 
