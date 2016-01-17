@@ -26,8 +26,10 @@ class carbon_c_relay::config inherits carbon_c_relay {
     replication_factor => 1
   }
 
-  create_resources( 'carbon_c_relay::config::cluster', $carbon_c_relay::config_clusters, $defaults)
+  create_resources( 'carbon_c_relay::config::cluster', $carbon_c_relay::config_clusters, $defaults )
 
-  create_resources( 'carbon_c_relay::config::rewrite', $carbon_c_relay::config_rewrites)
+  create_resources( 'carbon_c_relay::config::match', $carbon_c_relay::config_matches )
+
+  create_resources( 'carbon_c_relay::config::rewrite', $carbon_c_relay::config_rewrites )
 
 }

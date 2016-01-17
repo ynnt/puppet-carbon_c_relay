@@ -1,5 +1,5 @@
 
-match *
-  send to @cluster_name
-  stop
+match <%= @expression %>
+  send to <%= @cluster_name %>
+  <%if @stop><%= @stop %><% end -%>
   ;

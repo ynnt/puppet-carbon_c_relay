@@ -12,6 +12,9 @@
 # [*config_file*]
 # Specifies where carbon-c-relay reads it's config settings.
 #
+# [*config_matches*]
+# Specifies what match rules are added to the config file
+#
 # [*config_rewrites*]
 # Specifies what rewrite rules are added to the config file
 #
@@ -96,6 +99,7 @@
 class carbon_c_relay (
   $config_clusters    = $carbon_c_relay::params::config_clusters,
   $config_file        = $carbon_c_relay::params::config_file,
+  $config_matches     = $carbon_c_relay::params::config_matches,
   $config_rewrites    = $carbon_c_relay::params::config_rewrites,
   $group              = $carbon_c_relay::params::group,
   $init_file          = $carbon_c_relay::params::init_file,
