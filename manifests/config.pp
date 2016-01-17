@@ -21,9 +21,12 @@ class carbon_c_relay::config inherits carbon_c_relay {
     content => "# ${carbon_c_relay::config_file}: Managed by Puppet."
   }
 
-  carbon_c_relay::config::cluster { 'local_carbon':
-    hosts => [ '127.0.0.1:2013'],
+  $defaults = {
+    forward_proto => 'forward',
+    replication_factor => 1
   }
+
+  create_resources( 'carbon_c_relay::config::cluster', $carbon_c_relay::clusters, $defaults)
 
   create_resources( 'carbon_c_relay::config::rewrite', $carbon_c_relay::config_rewrites)
 

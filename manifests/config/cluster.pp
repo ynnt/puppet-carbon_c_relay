@@ -3,7 +3,7 @@ define carbon_c_relay::config::cluster (
   $cluster_name       = $title,
   $file               = undef,
   $forward_proto      = 'forward',
-  $hosts              = {},
+  $hosts              = [],
   $replication_factor = 1
 ){
 
@@ -18,8 +18,8 @@ define carbon_c_relay::config::cluster (
     fail("forward_proto '${forward_proto}' is not in ['forward', 'file']")
   }
 
-  unless is_hash( $hosts ) {
-    fail("'hosts' param is not a hash")
+  unless is_array( $hosts ) {
+    fail("'hosts' param is not a array")
   }
 
   concat::fragment { "cluster-${title}":
