@@ -1,5 +1,6 @@
 #
 class carbon_c_relay::params {
+  $config_clusters             = {}
   $config_file                 = '/etc/carbon-c-relay.conf'
   $config_rewrites             = {}
   $group                       = 'carbon-c-relay'

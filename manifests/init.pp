@@ -6,6 +6,9 @@
 #
 # === Parameters
 #
+# [*config_clusters*]
+# Specifies what clusters are added to the config file
+#
 # [*config_file*]
 # Specifies where carbon-c-relay reads it's config settings.
 #
@@ -91,6 +94,7 @@
 # Marc Lambrichs <marc.lambrichs@gmail.com>
 #
 class carbon_c_relay (
+  $config_clusters    = $carbon_c_relay::params::config_clusters,
   $config_file        = $carbon_c_relay::params::config_file,
   $config_rewrites    = $carbon_c_relay::params::config_rewrites,
   $group              = $carbon_c_relay::params::group,
@@ -118,6 +122,7 @@ class carbon_c_relay (
   $worker_threads     = $carbon_c_relay::params::worker_threads
 ) inherits carbon_c_relay::params {
 
+  validate_hash($config_clusters)
   validate_string($config_file)
   validate_hash($config_rewrites)
   validate_string($group)
