@@ -9,7 +9,6 @@ define carbon_c_relay::config::cluster (
 ){
 
   validate_string($cluster_name)
-  validate_integer($replication_factor)
 
   if ! ($file == undef) {
     validate_string( $file )
