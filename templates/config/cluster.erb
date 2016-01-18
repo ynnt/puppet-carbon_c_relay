@@ -10,7 +10,7 @@ cluster <%= @cluster_name %>
     <%= @forward_proto %> <%= @channel %><% if @replication_factor.to_i > 1 -%>replication <%= @replication_factor %><% end %>
   <%- end -%>
   <% @hosts.each do | host | -%>
-  <%= host['host'] %>:<%= host['port'] %><%if host['alias'] %>=<%= host['alias'] %><% if host['proto'] %> <%= host['proto'] %><% end %>
+  <%= host['host'] %>:<%= host['port'] %><%if host['alias'] %>=<%= host['alias'] %><% end %><% if host['proto'] %> <%= host['proto'] %><% end %>
   <% end -%>
 ;
 <%- end -%>
