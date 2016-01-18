@@ -7,9 +7,7 @@ After=network.target
 EnvironmentFile=/etc/sysconfig/<%= @package_name %>
 User=<%= @user %>
 Group=<%= @group %>
-PIDFile=<%= @pid_dir %>/<%= @package_name %>.pid
 ExecStart=/bin/carbon-c-relay -f <%= @config_file %> $ARGS
-Type=forking
 
 [Install]
 WantedBy=multi-user.target
