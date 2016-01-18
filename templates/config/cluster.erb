@@ -3,11 +3,11 @@ cluster <%= @cluster_name %>
 <% if @forward_proto == "file" -%>
   <%= @forward_proto %> <%= @file %>
   ;
-<% elsif @forward_proto == "forward" -%>
+<% else -%>
   <%- if @channel == "carbon_ch" -%>
-  <%= @forward_proto %> <%= @channel %>
+  <%= @channel %>
   <%- else -%>
-    <%= @forward_proto %> <%= @channel %><% if @replication_factor.to_i > 1 -%>replication <%= @replication_factor %><% end %>
+    <%= @channel %><% if @replication_factor.to_i > 1 -%>replication <%= @replication_factor %><% end %>
   <%- end -%>
   <% @hosts.each do | host | -%>
   <%= host['host'] %>:<%= host['port'] %><%if host['alias'] %>=<%= host['alias'] %><% end %><% if host['proto'] %> <%= host['proto'] %><% end %>

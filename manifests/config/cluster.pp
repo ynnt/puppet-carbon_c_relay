@@ -3,7 +3,7 @@ define carbon_c_relay::config::cluster (
   $channel            = 'carbon_ch',
   $cluster_name       = $title,
   $file               = undef,
-  $forward_proto      = 'forward',
+  $forward_proto      = undef,
   $hosts              = [],
   $replication_factor = undef
 ){
