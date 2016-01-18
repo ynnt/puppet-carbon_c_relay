@@ -3,7 +3,6 @@ cluster <%= @cluster_name %>
 <% if @forward_proto == "file" -%>
   <%= @forward_proto %> <%= @file %>
   ;
-<% elsif @forward_proto == "forward" -%>
 <% else -%>
   <%- if @channel == "carbon_ch" -%>
   <%= @channel %>
