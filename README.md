@@ -1,5 +1,7 @@
 # carbon_c_relay
 
+[![Puppet Forge](http://img.shields.io/puppetforge/v/mlambrichs/carbon_c_relay.svg)](https://forge.puppetlabs.com/mlambrichs/carbon_c_relay) [![Build Status](https://travis-ci.org/mlambrichs/puppet-carbon_c_relay.svg?branch=master)](https://travis-ci.org/mlambrichs/puppet-carbon_c_relay)
+
 #### Table of Contents
 
 1. [Overview](#overview)
