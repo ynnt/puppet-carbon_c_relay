@@ -13,7 +13,7 @@ class carbon_c_relay::params {
   $log_dir                     = '/var/log/carbon-c-relay'
   $log_file                    = 'carbon-c-relay.log'
   $output_file                 = undef
-  $package_ensure              = present
+  $package_ensure              = latest
   $package_manage              = true
   $package_name                = 'carbon-c-relay'
   $server_batch_size           = 2500
