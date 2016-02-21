@@ -56,6 +56,10 @@
 #   Specify the name this package.
 #   Defaults to: 'carbon-c-relay'.
 #
+# [*pid_dir*]
+#   Specifies directory where the pid file is written.
+#   Default: /var/run
+#
 # [*server_batch_size*]
 #
 # [*server_queue_size*]
@@ -109,6 +113,7 @@ class carbon_c_relay (
   $package_ensure     = $carbon_c_relay::params::package_ensure,
   $package_manage     = $carbon_c_relay::params::package_manage,
   $package_name       = $carbon_c_relay::params::package_name,
+  $pid_dir            = $carbon_c_relay::params::pid_dir,
   $server_batch_size  = $carbon_c_relay::params::server_batch_size,
   $server_queue_size  = $carbon_c_relay::params::server_queue_size,
   $service_enable     = $carbon_c_relay::params::service_enable,
@@ -121,32 +126,43 @@ class carbon_c_relay (
   $worker_threads     = $carbon_c_relay::params::worker_threads
 ) inherits carbon_c_relay::params {
 
-  validate_hash($config_clusters)
-  validate_string($config_file)
-  validate_hash($config_rewrites)
-  validate_string($group)
-  validate_string($init_file)
-  validate_string($init_file_ensure)
-  validate_string($init_template)
-  validate_string($interface)
-  validate_integer($listen)
-  validate_string($log_dir)
-  validate_string($log_file)
-  validate_string($output_file)
-  validate_string($package_ensure)
-  validate_bool($package_manage)
-  validate_string($package_name)
-  validate_string($pid_dir)
-  validate_integer($server_batch_size)
-  validate_integer($server_queue_size)
-  validate_bool($service_enable)
-  validate_string($service_ensure)
-  validate_bool($service_manage)
-  validate_string($service_name)
-  validate_string($sysconfig_file)
-  validate_string($sysconfig_template)
-  validate_string($user)
-  validate_integer($worker_threads)
+  validate_bool(
+    $package_manage,
+    $service_enable,
+    $service_manage,
+  )
+
+  validate_hash(
+    $config_clusters,
+    $config_rewrites,
+  )
+
+  validate_integer(
+    $listen,
+    $server_batch_size,
+    $server_queue_size,
+    $worker_threads,
+  )
+
+  validate_string(
+    $config_file,
+    $group,
+    $init_file,
+    $init_file_ensure,
+    $init_template,
+    $interface,
+    $log_dir,
+    $log_file,
+    $output_file,
+    $package_ensure,
+    $package_name,
+    $pid_dir,
+    $service_ensure,
+    $service_name,
+    $sysconfig_file,
+    $sysconfig_template,
+    $user,
+  )
 
   anchor { 'carbon_c_relay::begin': } ->
   class { '::carbon_c_relay::install': } ->
