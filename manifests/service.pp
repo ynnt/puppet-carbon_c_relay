@@ -28,7 +28,6 @@ class carbon_c_relay::service inherits carbon_c_relay {
       name       => $carbon_c_relay::service_name,
       hasstatus  => true,
       hasrestart => true,
-      provider   => 'systemd'
     }
   }
 }
