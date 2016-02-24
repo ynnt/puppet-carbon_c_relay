@@ -137,12 +137,12 @@ class carbon_c_relay (
     $config_rewrites,
   )
 
-  validate_integer(
+  validate_integer([
     $listen,
     $server_batch_size,
     $server_queue_size,
     $worker_threads,
-  )
+  ])
 
   validate_string(
     $config_file,
