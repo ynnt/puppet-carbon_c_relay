@@ -58,7 +58,11 @@
 #
 # [*pid_dir*]
 #   Specifies directory where the pid file is written.
-#   Default: /var/run
+#   Default: /var/run/carbon-c-relay
+#
+# [*pid_file*]
+#   Specifies name of pid file
+#   Default: carbon-c-relay.pid
 #
 # [*server_batch_size*]
 #
@@ -114,6 +118,7 @@ class carbon_c_relay (
   $package_manage     = $carbon_c_relay::params::package_manage,
   $package_name       = $carbon_c_relay::params::package_name,
   $pid_dir            = $carbon_c_relay::params::pid_dir,
+  $pid_file           = $carbon_c_relay::params::pid_file,
   $server_batch_size  = $carbon_c_relay::params::server_batch_size,
   $server_queue_size  = $carbon_c_relay::params::server_queue_size,
   $service_enable     = $carbon_c_relay::params::service_enable,
@@ -157,6 +162,7 @@ class carbon_c_relay (
     $package_ensure,
     $package_name,
     $pid_dir,
+    $pid_file,
     $service_ensure,
     $service_name,
     $sysconfig_file,
