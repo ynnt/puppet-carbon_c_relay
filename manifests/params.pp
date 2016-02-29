@@ -4,8 +4,8 @@ class carbon_c_relay::params {
   $config_file                 = '/etc/carbon-c-relay.conf'
   $config_matches              = {}
   $config_rewrites             = {}
-  $group                       = 'carbon-c-relay'
-  $init_file                   = '/etc/systemd/system/carbon-c-relay.service'
+  $group                       = 'carbon-relay'
+  $init_file                   = '/etc/init.d/carbon-c-relay'
   $init_file_ensure            = 'file'
   $init_template               = "carbon_c_relay${init_file}.erb"
   $interface                   = 'all'
@@ -16,7 +16,8 @@ class carbon_c_relay::params {
   $package_ensure              = latest
   $package_manage              = true
   $package_name                = 'carbon-c-relay'
-  $pid_dir                     = '/var/run'
+  $pid_dir                     = '/var/run/carbon-c-relay'
+  $pid_file                    = 'carbon-c-relay.pid'
   $server_batch_size           = 2500
   $server_queue_size           = 25000
   $service_enable              = true
