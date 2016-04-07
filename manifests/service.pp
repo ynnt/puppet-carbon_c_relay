@@ -13,6 +13,13 @@ class carbon_c_relay::service inherits carbon_c_relay {
       mode   => '0644',
       owner  => $carbon_c_relay::user,
       before => Service[$carbon_c_relay::service_name]
+    } ->
+    file { $carbon_c_relay::log_file:
+      ensure => file,
+      group  => $carbon_c_relay::group,
+      mode   => '0644',
+      owner  => $carbon_c_relay::user,
+      before => Service[$carbon_c_relay::service_name]
     }
 
     file { $carbon_c_relay::init_file:
