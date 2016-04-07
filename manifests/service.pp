@@ -19,6 +19,7 @@ class carbon_c_relay::service inherits carbon_c_relay {
       group  => $carbon_c_relay::group,
       mode   => '0644',
       owner  => $carbon_c_relay::user,
+      path   => "${carbon_c_relay::log_dir}/${carbon_c_relay::log_file}",
       before => Service[$carbon_c_relay::service_name]
     }
 
