@@ -1,0 +1,14 @@
+# <%= scope.lookupvar('carbon_c_relay::init_file') %>: Managed by puppet.
+[Unit]
+Description=Enhanced C implementation of Carbon relay, aggregator and rewriter
+After=network.target
+
+[Service]
+User=<%= scope.lookupvar('carbon_c_relay::user') %>
+Group=<%= scope.lookupvar('carbon_c_relay::group') %>
+EnvironmentFile=/etc/sysconfig/<%= @package_name %>
+ExecStart=/bin/carbon-c-relay -f <%= scope.lookupvar('carbon_c_relay::config_file') %> $ARGS
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
