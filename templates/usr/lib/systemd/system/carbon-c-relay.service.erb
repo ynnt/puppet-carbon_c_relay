@@ -9,6 +9,22 @@ Group=<%= scope.lookupvar('carbon_c_relay::group') %>
 EnvironmentFile=/etc/sysconfig/<%= @package_name %>
 ExecStart=/bin/carbon-c-relay -f <%= scope.lookupvar('carbon_c_relay::config_file') %> $ARGS
 Type=simple
+<% if scope.lookupvar('carbon_c_relay::limitfsize') -%>
+# (file size)
+LimitFSIZE=<%= scope.lookupvar('carbon_c_relay::limitfsize') %>
+<% end -%>
+<% if scope.lookupvar('carbon_c_relay::limitcpu') -%>
+# (cpu time)
+LimitCPU=<%= scope.lookupvar('carbon_c_relay::limitcpu') %>
+<% end -%>
+<% if scope.lookupvar('carbon_c_relay::limitas') -%>
+# (virtual memory size)
+LimitAS=<%= scope.lookupvar('carbon_c_relay::limitas') %>
+<% end -%>
+# (open files)
+LimitNOFILE=<%= scope.lookupvar('carbon_c_relay::limitnofile') %>
+# (processes/threads)
+LimitNPROC=<%= scope.lookupvar('carbon_c_relay::limitnproc') %>
 
 [Install]
 WantedBy=multi-user.target

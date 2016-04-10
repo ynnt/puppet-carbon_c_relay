@@ -9,6 +9,11 @@ class carbon_c_relay::params {
   $init_file_ensure            = 'file'
   $init_template               = "carbon_c_relay${init_file}.erb"
   $interface                   = 'all'
+  $limitfsize                  = undef
+  $limitcpu                    = undef
+  $limitas                     = undef
+  $limitnofile                 = 64000
+  $limitnproc                  = 64000
   $listen                      = 2003
   $log_dir                     = '/var/log/carbon-c-relay'
   $log_file                    = 'carbon-c-relay.log'
