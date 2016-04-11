@@ -26,7 +26,7 @@ class carbon_c_relay::service inherits carbon_c_relay {
       content => template($carbon_c_relay::service_template),
     }
 
-    Exec { 'systemctl daemon-reload':
+    Exec { '/bin/systemctl daemon-reload':
       subscribe   => File[$carbon_c_relay::service_file],
       refreshonly => true,
       user        => 'root'
