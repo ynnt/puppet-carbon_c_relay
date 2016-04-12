@@ -1,30 +1,30 @@
-# <%= scope.lookupvar('carbon_c_relay::init_file') %>: Managed by puppet.
+# <%= @init_file %>: Managed by puppet.
 [Unit]
 Description=Enhanced C implementation of Carbon relay, aggregator and rewriter
 After=network.target
 
 [Service]
-User=<%= scope.lookupvar('carbon_c_relay::user') %>
-Group=<%= scope.lookupvar('carbon_c_relay::group') %>
-EnvironmentFile=/etc/sysconfig/<%= @package_name %>
-ExecStart=/bin/carbon-c-relay -f <%= scope.lookupvar('carbon_c_relay::config_file') %> $ARGS
+User=<%= @user %>
+Group=<%= @group %>
+EnvironmentFile=/etc/sysconfig/<%= @service_name %>
+ExecStart=/bin/carbon-c-relay -f <%= @config_file %> $ARGS
 Type=simple
-<% if scope.lookupvar('carbon_c_relay::limitfsize') -%>
+<% if @limit_fsize -%>
 # (file size)
-LimitFSIZE=<%= scope.lookupvar('carbon_c_relay::limitfsize') %>
+LimitFSIZE=<%= @limit_fsize %>
 <% end -%>
-<% if scope.lookupvar('carbon_c_relay::limitcpu') -%>
+<% if @limit_cpu -%>
 # (cpu time)
-LimitCPU=<%= scope.lookupvar('carbon_c_relay::limitcpu') %>
+LimitCPU=<%= @limit_cpu %>
 <% end -%>
-<% if scope.lookupvar('carbon_c_relay::limitas') -%>
+<% if @limit_as -%>
 # (virtual memory size)
-LimitAS=<%= scope.lookupvar('carbon_c_relay::limitas') %>
+LimitAS=<%= @limit_as %>
 <% end -%>
 # (open files)
-LimitNOFILE=<%= scope.lookupvar('carbon_c_relay::limitnofile') %>
+LimitNOFILE=<%= @limit_no_file %>
 # (processes/threads)
-LimitNPROC=<%= scope.lookupvar('carbon_c_relay::limitnproc') %>
+LimitNPROC=<%= @limit_nproc %>
 
 [Install]
 WantedBy=multi-user.target

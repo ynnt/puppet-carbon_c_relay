@@ -21,4 +21,4 @@
 #   -t  config test mode: prints rule matches from input on stdin
 #   -H  hostname: override hostname (used in statistics)
 
-ARGS=-p <%= @listen %> -w <%= @worker_threads %> -b <%= @server_batch_size %> -q <%= @server_queue_size %> -l <%= @log_dir %>/<%= @log_file %>
+ARGS=-p <%= @listen %> -w <%= @worker_threads %> -b <%= @server_batch_size %> -q <%= @server_queue_size %> -l <%= @log_dir %>/<%= @log_file %><% if @statistics_sending_interval -%> -S <%= @statistics_sending_interval %><% end -%><% if @allowed_chars -%> -c <%= @allowed_chars %><% end -%>

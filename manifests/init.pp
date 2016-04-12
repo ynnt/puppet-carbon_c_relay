@@ -6,6 +6,10 @@
 #
 # === Parameters
 #
+# [*allowed_chars*]
+# Specifies the allowed chars next to [A-Za-z0-9]
+# Default: [-_:#]
+#
 # [*config_clusters*]
 # Specifies what clusters are added to the config file
 #
@@ -101,6 +105,7 @@
 # Marc Lambrichs <marc.lambrichs@gmail.com>
 #
 class carbon_c_relay (
+  $allowed_chars      = $carbon_c_relay::params::allowed_chars,
   $config_clusters    = $carbon_c_relay::params::config_clusters,
   $config_file        = $carbon_c_relay::params::config_file,
   $config_matches     = $carbon_c_relay::params::config_matches,
@@ -110,11 +115,11 @@ class carbon_c_relay (
   $init_file_ensure   = $carbon_c_relay::params::init_file_ensure,
   $init_template      = $carbon_c_relay::params::init_template,
   $interface          = $carbon_c_relay::params::interface,
-  $limitfsize         = $carbon_c_relay::params::limitfsize,
-  $limitcpu           = $carbon_c_relay::params::limitcpu,
-  $limitas            = $carbon_c_relay::params::limitas,
-  $limitnofile        = $carbon_c_relay::params::limitnofile,
-  $limitnproc         = $carbon_c_relay::params::limitnproc,
+  $limit_fsize        = $carbon_c_relay::params::limit_fsize,
+  $limit_cpu          = $carbon_c_relay::params::limit_cpu,
+  $limit_as           = $carbon_c_relay::params::limit_as,
+  $limit_no_file      = $carbon_c_relay::params::limit_no_file,
+  $limit_nproc        = $carbon_c_relay::params::limit_nproc,
   $listen             = $carbon_c_relay::params::listen,
   $log_dir            = $carbon_c_relay::params::log_dir,
   $log_file           = $carbon_c_relay::params::log_file,
@@ -150,8 +155,8 @@ class carbon_c_relay (
   )
 
   validate_integer([
-    $limitnofile,
-    $limitnproc,
+    $limit_no_file,
+    $limit_nproc,
     $listen,
     $server_batch_size,
     $server_queue_size,

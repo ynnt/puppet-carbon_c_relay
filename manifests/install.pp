@@ -1,19 +1,25 @@
 #
-class carbon_c_relay::install inherits carbon_c_relay {
+class carbon_c_relay::install (
+  $group          = $carbon_c_relay::group,
+  $package_ensure = $carbon_c_relay::package_ensure,
+  $package_manage = $carbon_c_relay::package_manage,
+  $package_name   = $carbon_c_relay::package_name,
+  $user           = $carbon_c_relay::user,
+) {
   
-  if $carbon_c_relay::package_manage {
+  if $package_manage {
 
-    group { $carbon_c_relay::group:
+    group { $group:
       ensure => present
     } ->
-    user { $carbon_c_relay::user:
+    user { $user:
       ensure => present,
-      groups => $carbon_c_relay::group,
+      groups => $group,
       shell  => '/sbin/nologin'
     }
     
-    package { $carbon_c_relay::package_name:
-      ensure => $carbon_c_relay::package_ensure
+    package { $package_name:
+      ensure => $package_ensure
     }
   }
 }

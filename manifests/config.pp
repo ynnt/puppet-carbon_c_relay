@@ -1,24 +1,38 @@
 #
-class carbon_c_relay::config inherits carbon_c_relay {
+class carbon_c_relay::config (
+  $allowed_chars               = $carbon_c_relay::allowed_chars,
+  $config_file                 = $carbon_c_relay::config_file,
+  $listen                      = $carbon_c_relay::listen,
+  $log_dir                     = $carbon_c_relay::log_dir,
+  $log_file                    = $carbon_c_relay::log_file,
+  $package_name                = $carbon_c_relay::package_name,
+  $server_batch_size           = $carbon_c_relay::server_batch_size,
+  $server_queue_size           = $carbon_c_relay::server_queue_size,
+  $service_name                = $carbon_c_relay::service_name,
+  $statistics_sending_interval = $carbon_c_relay::statistics_sending_interval,
+  $sysconfig_file              = $carbon_c_relay::sysconfig_file,
+  $sysconfig_template          = $carbon_c_relay::sysconfig_template,
+  $worker_threads              = $carbon_c_relay::worker_threads,
+) {
 
-  file { $carbon_c_relay::sysconfig_file:
+  file { $sysconfig_file:
     ensure  => file,
-    content => template($carbon_c_relay::sysconfig_template),
-    notify  => Service[$carbon_c_relay::service_name]
+    content => template($sysconfig_template),
+    notify  => Service[$service_name]
   }
 
-  concat { $carbon_c_relay::config_file:
+  concat { $config_file:
     ensure => present,
     owner  => root,
     group  => root,
     mode   => '0644',
-    notify => Service[$carbon_c_relay::service_name]
+    notify => Service[$service_name]
   }
 
   concat::fragment { 'header':
-    target  => $carbon_c_relay::config_file,
+    target  => $config_file,
     order   => '10',
-    content => "# ${carbon_c_relay::config_file}: Managed by Puppet."
+    content => "# ${config_file}: Managed by Puppet."
   }
 
   $defaults = {
