@@ -43,7 +43,8 @@ class carbon_c_relay::service (
       content => template($service_template),
     }
 
-    Exec { '/bin/systemctl daemon-reload':
+    exec { 'daemon-reload':
+      command     => '/bin/systemctl daemon-reload',
       subscribe   => File[$carbon_c_relay::service_file],
       refreshonly => true,
       user        => 'root'
