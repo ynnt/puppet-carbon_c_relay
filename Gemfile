@@ -1,9 +1,6 @@
 source 'https://rubygems.org'
 
 puppetversion = ENV.key?('PUPPET_VERSION') ? "= #{ENV['PUPPET_VERSION']}" : ['>= 3.3']
-gem 'puppet', puppetversion
-gem 'puppet-lint', '>= 0.3.2'
-gem 'facter', '>= 1.7.0'
 
 group :test do
   gem 'rspec-core',              :require => false
@@ -19,4 +16,16 @@ group :development do
   gem 'guard-rake',      :require => false
   gem 'puppet-strings',  :require => false, :git => 'https://github.com/puppetlabs/puppetlabs-strings.git'
   gem 'redcarpet',       :require => false
+end
+
+if facterversion = ENV['FACTER_GEM_VERSION']
+  gem 'facter', facterversion, :require => false
+else
+  gem 'facter', :require => false
+end
+
+if puppetversion = ENV['PUPPET_GEM_VERSION']
+  gem 'puppet', puppetversion, :require => false
+else
+  gem 'puppet', :require => false
 end

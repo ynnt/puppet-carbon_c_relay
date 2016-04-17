@@ -17,3 +17,5 @@ tags
 pkg/
 
 RELEASE
+.bundle
+Gemfile.lock
