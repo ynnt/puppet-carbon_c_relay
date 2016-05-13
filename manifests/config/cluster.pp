@@ -3,7 +3,6 @@ define carbon_c_relay::config::cluster (
   $channel            = 'carbon_ch',
   $cluster_name       = $title,
   $file               = undef,
-  $forward_proto      = undef,
   $hosts              = [],
   $replication_factor = undef
 ){
@@ -14,12 +13,8 @@ define carbon_c_relay::config::cluster (
     validate_string( $file )
   }
 
-  if ! ($channel in ['carbon_ch', 'fnv1a_ch']) {
-    fail("channel '${channel}' is not in ['carbon_ch', 'fnv1a_ch']")
-  }
-
-  if ! ($forward_proto in ['forward', 'file']) {
-    fail("forward_proto '${forward_proto}' is not in ['forward', 'file']")
+  if ! ($channel in ['carbon_ch', 'fnv1a_ch', 'forward', 'file']) {
+    fail("channel '${channel}' is not in ['carbon_ch', 'fnv1a_ch', 'forward', 'file']")
   }
 
   unless is_array( $hosts ) {
