@@ -36,7 +36,6 @@ class carbon_c_relay::config (
   }
 
   $defaults = {
-    forward_proto => 'forward',
     replication_factor => 1
   }
 
