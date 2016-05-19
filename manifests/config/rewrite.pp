@@ -8,6 +8,6 @@ define carbon_c_relay::config::rewrite (
   concat::fragment { "rewrite-${title}":
     target  => $carbon_c_relay::config_file,
     content => template('carbon_c_relay/config/rewrite.erb'),
-    order   => '40'
+    order   => '90'
   }
 }
