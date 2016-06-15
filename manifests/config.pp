@@ -2,6 +2,7 @@
 class carbon_c_relay::config (
   $allowed_chars               = $carbon_c_relay::allowed_chars,
   $config_file                 = $carbon_c_relay::config_file,
+  $group                       = $carbon_c_relay::group,
   $listen                      = $carbon_c_relay::listen,
   $log_dir                     = $carbon_c_relay::log_dir,
   $log_file                    = $carbon_c_relay::log_file,
@@ -12,6 +13,7 @@ class carbon_c_relay::config (
   $statistics_sending_interval = $carbon_c_relay::statistics_sending_interval,
   $sysconfig_file              = $carbon_c_relay::sysconfig_file,
   $sysconfig_template          = $carbon_c_relay::sysconfig_template,
+  $user                        = $carbon_c_relay::user,
   $worker_threads              = $carbon_c_relay::worker_threads,
 ) {
 
@@ -23,8 +25,8 @@ class carbon_c_relay::config (
 
   concat { $config_file:
     ensure => present,
-    owner  => root,
-    group  => root,
+    owner  => $user,
+    group  => $group,
     mode   => '0644',
     notify => Service[$service_name]
   }
