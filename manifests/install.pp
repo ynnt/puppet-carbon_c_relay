@@ -6,7 +6,7 @@ class carbon_c_relay::install (
   $package_name   = $carbon_c_relay::package_name,
   $user           = $carbon_c_relay::user,
 ) {
-  
+
   if $package_manage {
 
     group { $group:
@@ -17,7 +17,7 @@ class carbon_c_relay::install (
       groups => $group,
       shell  => '/sbin/nologin'
     }
-    
+
     package { $package_name:
       ensure => $package_ensure
     }
