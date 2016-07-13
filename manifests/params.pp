@@ -24,6 +24,7 @@ class carbon_c_relay::params {
   $package_name                = 'carbon-c-relay'
   $pid_dir                     = '/var/run/carbon-c-relay'
   $pid_file                    = 'carbon-c-relay.pid'
+  $replication_factor          = 1
   $server_batch_size           = 2500
   $server_queue_size           = 25000
   $service_enable              = true

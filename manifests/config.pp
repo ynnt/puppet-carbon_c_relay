@@ -7,6 +7,7 @@ class carbon_c_relay::config (
   $log_dir                     = $carbon_c_relay::log_dir,
   $log_file                    = $carbon_c_relay::log_file,
   $package_name                = $carbon_c_relay::package_name,
+  $replication_factor          = $carbon_c_relay::replication_factor,
   $server_batch_size           = $carbon_c_relay::server_batch_size,
   $server_queue_size           = $carbon_c_relay::server_queue_size,
   $service_name                = $carbon_c_relay::service_name,
@@ -38,7 +39,7 @@ class carbon_c_relay::config (
   }
 
   $defaults = {
-    replication_factor => 1
+    replication_factor => $replication_factor
   }
 
   create_resources( 'carbon_c_relay::config::cluster', $carbon_c_relay::config_clusters, $defaults )

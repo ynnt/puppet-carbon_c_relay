@@ -68,6 +68,9 @@
 #   Specifies name of pid file
 #   Default: carbon-c-relay.pid
 #
+# [*replication_factor*]
+#   Indicates the replication factor the relay is going to use
+#
 # [*server_batch_size*]
 #
 # [*server_queue_size*]
@@ -129,6 +132,7 @@ class carbon_c_relay (
   $package_name       = $carbon_c_relay::params::package_name,
   $pid_dir            = $carbon_c_relay::params::pid_dir,
   $pid_file           = $carbon_c_relay::params::pid_file,
+  $replication_factor = $carbon_c_relay::params::replication_factor,
   $server_batch_size  = $carbon_c_relay::params::server_batch_size,
   $server_queue_size  = $carbon_c_relay::params::server_queue_size,
   $service_enable     = $carbon_c_relay::params::service_enable,
@@ -158,6 +162,7 @@ class carbon_c_relay (
     $limit_no_file,
     $limit_nproc,
     $listen,
+    $replication_factor,
     $server_batch_size,
     $server_queue_size,
     $worker_threads,
