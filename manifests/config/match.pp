@@ -1,8 +1,9 @@
 #
 define carbon_c_relay::config::match (
   $cluster_name = 'blackhole',
+  $comments     = undef,
   $expression   = $title,
-  $order        = '30',
+  $order        = undef,
   $stop         = false
 ){
 

@@ -1,6 +1,16 @@
 
+<% if @comments and @comments.is_a?(Array) -%>
+  <% @comments.each do |comment| -%>
+## <%= comment %>
+  <% end -%>
+<% else -%>
+## <%= @comments %>
+<% end -%>
 match <%= @expression %>
+<% if @cluster_name.is_a?(Array) -%>
+  send to <%= @cluster_name.join(' ') %>
+<% else -%>
   send to <%= @cluster_name %>
+<% end -%>
   <%if @stop %>stop<% end %>
   ;
-
