@@ -1,7 +1,7 @@
 {
-  "name": "puppet-carbon_c_relay",
+  "name": "mlambrichs-carbon_c_relay",
   "version": "0.1.0",
-  "author": "Marc Lambrichs",
+  "author": "Marc Lambrichs <marc.lambrichs@gmail.com>",
   "summary": "Installs, configures and manages carbon-c-relay service, an enhanced C implementation of Carbon relay, aggregator and rewriter",
   "license": "Apache-2.0",
   "source": "https://github.com/mlambrichs/puppet-carbon_c_relay.git",
