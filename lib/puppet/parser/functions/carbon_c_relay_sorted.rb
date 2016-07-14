@@ -1,7 +1,9 @@
 def sorted(obj, order)
   case obj
   when Hash
-    obj.keys.sort.each_with_index do |key, index|
+    obj.keys.sort {
+      |a,b| (b.include? a) ? 1 : (a <=> b)
+    }.each_with_index do |key, index|
       obj[key][:order] = order + index
     end
     return obj 
