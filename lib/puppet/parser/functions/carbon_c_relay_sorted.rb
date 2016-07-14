@@ -1,11 +1,13 @@
 def sorted(obj, order)
   case obj
   when Hash
+
     obj.keys.sort {
       |a,b| (b.include? a) ? 1 : (a <=> b)
     }.each_with_index do |key, index|
       obj[key][:order] = order + index
     end
+
     return obj 
   else
     raise Exception("Unable to handle object of type <%s>" % obj.class.to_s)

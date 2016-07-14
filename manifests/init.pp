@@ -93,6 +93,14 @@
 #   Specifies the name of the service to run
 #   Defaults to: 'ccrelay'
 #
+# [*sorted_matches*]
+#   Indicates whether match rules in conf should be sorted
+#   Defaults to: true
+#
+# [*sorted_rewrites*]
+#   Indicates whether rewrite rules in conf should be sorted
+#   Defaults to: false
+#
 # [*statistics_sending_interval*]
 # Specify the number of seconds between sending data
 #
@@ -141,6 +149,8 @@ class carbon_c_relay (
   $service_manage     = $carbon_c_relay::params::service_manage,
   $service_name       = $carbon_c_relay::params::service_name,
   $service_template   = $carbon_c_relay::params::service_template,
+  $sorted_matches     = $carbon_c_relay::params::sorted_matches,
+  $sorted_rewrites    = $carbon_c_relay::params::sorted_rewrites,
   $sysconfig_file     = $carbon_c_relay::params::sysconfig_file,
   $sysconfig_template = $carbon_c_relay::params::sysconfig_template,
   $user               = $carbon_c_relay::params::user,
@@ -151,6 +161,8 @@ class carbon_c_relay (
     $package_manage,
     $service_enable,
     $service_manage,
+    $sorted_matches,
+    $sorted_rewrites,
   )
 
   validate_hash(

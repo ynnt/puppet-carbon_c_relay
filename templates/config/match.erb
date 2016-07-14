@@ -1,10 +1,12 @@
 
-<% if @comments and @comments.is_a?(Array) -%>
-  <% @comments.each do |comment| -%>
+<% if @comments -%>
+  <%- if @comments.is_a?(Array) -%>
+    <%- @comments.each do |comment| -%>
 ## <%= comment %>
-  <% end -%>
-<% else -%>
+    <%- end -%>
+  <%- else -%>
 ## <%= @comments %>
+  <%- end -%>
 <% end -%>
 match <%= @expression %>
 <% if @cluster_name.is_a?(Array) -%>

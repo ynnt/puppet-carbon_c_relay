@@ -33,6 +33,8 @@ class carbon_c_relay::params {
   $service_manage              = true
   $service_name                = $package_name
   $service_template            = "carbon_c_relay${service_file}.erb"
+  $sorted_matches              = true
+  $sorted_rewrites             = false
   $statistics_sending_interval = 60
   $sysconfig_file              = '/etc/sysconfig/carbon-c-relay'
   $sysconfig_template          = "carbon_c_relay${sysconfig_file}.erb"
