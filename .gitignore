@@ -19,3 +19,6 @@ pkg/
 RELEASE
 .bundle
 Gemfile.lock
+
+spec/fixtures/manifests/
+spec/fixtures/modules/

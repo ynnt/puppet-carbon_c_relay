@@ -17,6 +17,7 @@ group :development do
   gem 'puppet-strings',  :require => false, :git => 'https://github.com/puppetlabs/puppetlabs-strings.git'
   gem 'redcarpet',       :require => false
   gem 'json',            '1.8.3'
+  gem 'json_pure',	 '1.8.3'
 end
 
 if facterversion = ENV['FACTER_GEM_VERSION']
