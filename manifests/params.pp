@@ -1,7 +1,7 @@
 #
 class carbon_c_relay::params {
   $allowed_chars               = undef
-  $carbon_cache_statistics     = undef
+  $carbon_cache_statistics     = false
   $config_clusters             = {}
   $config_file                 = '/etc/carbon-c-relay.conf'
   $config_matches              = {}
@@ -11,17 +11,17 @@ class carbon_c_relay::params {
   $init_file_ensure            = 'file'
   $init_template               = "carbon_c_relay${init_file}.erb"
   $interface                   = 'all'
-  $io_timeout                  = undef
+  $io_timeout                  = 600
   $limit_fsize                 = undef
   $limit_cpu                   = undef
   $limit_as                    = undef
   $limit_no_file               = 64000
   $limit_nproc                 = 64000
   $listen                      = 2003
-  $listen_backlog              = undef
+  $listen_backlog              = 3
   $log_dir                     = '/var/log/carbon-c-relay'
   $log_file                    = 'carbon-c-relay.log'
-  $max_stalls                  = undef
+  $max_stalls                  = 4
   $output_file                 = undef
   $package_ensure              = latest
   $package_manage              = true
