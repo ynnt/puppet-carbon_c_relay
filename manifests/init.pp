@@ -10,6 +10,9 @@
 # Specifies the allowed chars next to [A-Za-z0-9]
 # Default: [-_:#]
 #
+# [*carbon_cache_statistics*]
+# Specifies to send statistics like carbon-cache.py, e.g. not cumulative
+#
 # [*config_clusters*]
 # Specifies what clusters are added to the config file
 #
@@ -21,6 +24,10 @@
 #
 # [*config_rewrites*]
 # Specifies what rewrite rules are added to the config file
+#
+# [*io_timeout*]
+# Specifies IO timeout in milliseconds for server connections
+# Default: 600
 #
 # [*init_file*]
 # Specifies the name of the init file
@@ -41,8 +48,16 @@
 # [*interface*]
 # Specify on which interface (or all interfaces) carbon-c-relay should listen.
 #
+# [*listen_backlog*]
+# Specify connection listen backlog
+# Default: 3 (<v2.2), 32 (v2.2)
+#
 # [*listen*]
 # Specify on which port carbon-c-relay should listen.
+#
+# [*max_stalls*]
+# Specify server max stalls
+# Default: 4
 #
 # [*ouput_file*]
 # Specify to which file carbon-c-relay should redirect its output
@@ -101,6 +116,9 @@
 #   Indicates whether rewrite rules in conf should be sorted
 #   Defaults to: false
 #
+# [*statistics_hostname*]
+# Specify to override hostname used in statistics
+#
 # [*statistics_sending_interval*]
 # Specify the number of seconds between sending data
 #
@@ -116,48 +134,55 @@
 # Marc Lambrichs <marc.lambrichs@gmail.com>
 #
 class carbon_c_relay (
-  $allowed_chars      = $carbon_c_relay::params::allowed_chars,
-  $config_clusters    = $carbon_c_relay::params::config_clusters,
-  $config_file        = $carbon_c_relay::params::config_file,
-  $config_matches     = $carbon_c_relay::params::config_matches,
-  $config_rewrites    = $carbon_c_relay::params::config_rewrites,
-  $group              = $carbon_c_relay::params::group,
-  $init_file          = $carbon_c_relay::params::init_file,
-  $init_file_ensure   = $carbon_c_relay::params::init_file_ensure,
-  $init_template      = $carbon_c_relay::params::init_template,
-  $interface          = $carbon_c_relay::params::interface,
-  $limit_fsize        = $carbon_c_relay::params::limit_fsize,
-  $limit_cpu          = $carbon_c_relay::params::limit_cpu,
-  $limit_as           = $carbon_c_relay::params::limit_as,
-  $limit_no_file      = $carbon_c_relay::params::limit_no_file,
-  $limit_nproc        = $carbon_c_relay::params::limit_nproc,
-  $listen             = $carbon_c_relay::params::listen,
-  $log_dir            = $carbon_c_relay::params::log_dir,
-  $log_file           = $carbon_c_relay::params::log_file,
-  $output_file        = $carbon_c_relay::params::output_file,
-  $package_ensure     = $carbon_c_relay::params::package_ensure,
-  $package_manage     = $carbon_c_relay::params::package_manage,
-  $package_name       = $carbon_c_relay::params::package_name,
-  $pid_dir            = $carbon_c_relay::params::pid_dir,
-  $pid_file           = $carbon_c_relay::params::pid_file,
-  $replication_factor = $carbon_c_relay::params::replication_factor,
-  $server_batch_size  = $carbon_c_relay::params::server_batch_size,
-  $server_queue_size  = $carbon_c_relay::params::server_queue_size,
-  $service_enable     = $carbon_c_relay::params::service_enable,
-  $service_ensure     = $carbon_c_relay::params::service_ensure,
-  $service_file       = $carbon_c_relay::params::service_file,
-  $service_manage     = $carbon_c_relay::params::service_manage,
-  $service_name       = $carbon_c_relay::params::service_name,
-  $service_template   = $carbon_c_relay::params::service_template,
-  $sorted_matches     = $carbon_c_relay::params::sorted_matches,
-  $sorted_rewrites    = $carbon_c_relay::params::sorted_rewrites,
-  $sysconfig_file     = $carbon_c_relay::params::sysconfig_file,
-  $sysconfig_template = $carbon_c_relay::params::sysconfig_template,
-  $user               = $carbon_c_relay::params::user,
-  $worker_threads     = $carbon_c_relay::params::worker_threads
+  $allowed_chars           = $carbon_c_relay::params::allowed_chars,
+  $carbon_cache_statistics = $carbon_c_relay::params::carbon_cache_statistics,
+  $config_clusters         = $carbon_c_relay::params::config_clusters,
+  $config_file             = $carbon_c_relay::params::config_file,
+  $config_matches          = $carbon_c_relay::params::config_matches,
+  $config_rewrites         = $carbon_c_relay::params::config_rewrites,
+  $group                   = $carbon_c_relay::params::group,
+  $io_timeout              = $carbon_c_relay::params::io_timeout,
+  $init_file               = $carbon_c_relay::params::init_file,
+  $init_file_ensure        = $carbon_c_relay::params::init_file_ensure,
+  $init_template           = $carbon_c_relay::params::init_template,
+  $interface               = $carbon_c_relay::params::interface,
+  $limit_fsize             = $carbon_c_relay::params::limit_fsize,
+  $limit_cpu               = $carbon_c_relay::params::limit_cpu,
+  $limit_as                = $carbon_c_relay::params::limit_as,
+  $limit_no_file           = $carbon_c_relay::params::limit_no_file,
+  $limit_nproc             = $carbon_c_relay::params::limit_nproc,
+  $listen                  = $carbon_c_relay::params::listen,
+  $listen_backlog          = $carbon_c_relay::params::listen_backlog,
+  $log_dir                 = $carbon_c_relay::params::log_dir,
+  $log_file                = $carbon_c_relay::params::log_file,
+  $max_stalls              = $carbon_c_relay::params::max_stalls,
+  $output_file             = $carbon_c_relay::params::output_file,
+  $package_ensure          = $carbon_c_relay::params::package_ensure,
+  $package_manage          = $carbon_c_relay::params::package_manage,
+  $package_name            = $carbon_c_relay::params::package_name,
+  $pid_dir                 = $carbon_c_relay::params::pid_dir,
+  $pid_file                = $carbon_c_relay::params::pid_file,
+  $replication_factor      = $carbon_c_relay::params::replication_factor,
+  $server_batch_size       = $carbon_c_relay::params::server_batch_size,
+  $server_queue_size       = $carbon_c_relay::params::server_queue_size,
+  $service_enable          = $carbon_c_relay::params::service_enable,
+  $service_ensure          = $carbon_c_relay::params::service_ensure,
+  $service_file            = $carbon_c_relay::params::service_file,
+  $service_manage          = $carbon_c_relay::params::service_manage,
+  $service_name            = $carbon_c_relay::params::service_name,
+  $service_template        = $carbon_c_relay::params::service_template,
+  $statistics_hostname     = $carbon_c_relay::params::statistics_hostname,
+  $statistics_interval     = $carbon_c_relay::params::statistics_interval,
+  $sorted_matches          = $carbon_c_relay::params::sorted_matches,
+  $sorted_rewrites         = $carbon_c_relay::params::sorted_rewrites,
+  $sysconfig_file          = $carbon_c_relay::params::sysconfig_file,
+  $sysconfig_template      = $carbon_c_relay::params::sysconfig_template,
+  $user                    = $carbon_c_relay::params::user,
+  $worker_threads          = $carbon_c_relay::params::worker_threads
 ) inherits carbon_c_relay::params {
 
   validate_bool(
+    $carbon_cache_statistics,
     $package_manage,
     $service_enable,
     $service_manage,
@@ -171,12 +196,16 @@ class carbon_c_relay (
   )
 
   validate_integer([
+    $io_timeout,
     $limit_no_file,
     $limit_nproc,
     $listen,
+    $listen_backlog,
+    $max_stalls,
     $replication_factor,
     $server_batch_size,
     $server_queue_size,
+    $statistics_sending_interval,
     $worker_threads,
   ])
 
@@ -196,6 +225,7 @@ class carbon_c_relay (
     $pid_file,
     $service_ensure,
     $service_name,
+    $statistics_interval,
     $sysconfig_file,
     $sysconfig_template,
     $user,
