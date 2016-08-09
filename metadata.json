@@ -1,6 +1,6 @@
 {
   "name": "mlambrichs-carbon_c_relay",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "Marc Lambrichs <marc.lambrichs@gmail.com>",
   "summary": "Installs, configures and manages carbon-c-relay service, an enhanced C implementation of Carbon relay, aggregator and rewriter",
   "license": "Apache-2.0",
