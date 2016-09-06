@@ -42,7 +42,7 @@ class carbon_c_relay::params {
   $statistics_hostname         = undef
   $statistics_sending_interval = 60
   $sysconfig_file              = '/etc/sysconfig/carbon-c-relay'
-  $sysconfig_template          = "carbon_c_relay${sysconfig_file}.erb"
+  $sysconfig_template          = "carbon_c_relay/etc/sysconfig/carbon-c-relay.erb"
   $user                        = 'carbon-c-relay'
   $user_shell                  = '/sbin/nologin'
   $worker_threads              = 4
