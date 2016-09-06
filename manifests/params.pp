@@ -36,7 +36,7 @@ class carbon_c_relay::params {
   $service_file                = '/etc/systemd/system/carbon-c-relay.service'
   $service_manage              = true
   $service_name                = $package_name
-  $service_template            = "carbon_c_relay${service_file}.erb"
+  $service_template            = "carbon_c_relay/etc/sysconfig/carbon_c_relay.erb"
   $sorted_matches              = true
   $sorted_rewrites             = false
   $statistics_hostname         = undef
