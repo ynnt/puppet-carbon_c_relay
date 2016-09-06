@@ -44,5 +44,6 @@ class carbon_c_relay::params {
   $sysconfig_file              = '/etc/sysconfig/carbon-c-relay'
   $sysconfig_template          = "carbon_c_relay${sysconfig_file}.erb"
   $user                        = 'carbon-c-relay'
+  $user_shell                  = '/sbin/nologin'
   $worker_threads              = 4
 }
