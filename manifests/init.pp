@@ -178,6 +178,7 @@ class carbon_c_relay (
   $sysconfig_file              = $carbon_c_relay::params::sysconfig_file,
   $sysconfig_template          = $carbon_c_relay::params::sysconfig_template,
   $user                        = $carbon_c_relay::params::user,
+  $user_shell                  = $carbon_c_relay::params::user_shell,
   $worker_threads              = $carbon_c_relay::params::worker_threads
 ) inherits carbon_c_relay::params {
 
