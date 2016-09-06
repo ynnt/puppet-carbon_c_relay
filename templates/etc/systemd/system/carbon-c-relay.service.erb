@@ -6,7 +6,7 @@ After=network.target
 [Service]
 User=<%= @user %>
 Group=<%= @group %>
-EnvironmentFile=/etc/sysconfig/<%= @service_name %>
+EnvironmentFile=<%= @sysconfig_file %>
 ExecStart=/bin/carbon-c-relay -f <%= @config_file %> $ARGS
 ExecReload=/bin/kill -HUP ${MAINPID}
 Type=simple
