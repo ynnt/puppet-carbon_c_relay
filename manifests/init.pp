@@ -228,6 +228,7 @@ class carbon_c_relay (
     $sysconfig_file,
     $sysconfig_template,
     $user,
+    $user_shell
   )
 
   anchor { 'carbon_c_relay::begin': } ->
