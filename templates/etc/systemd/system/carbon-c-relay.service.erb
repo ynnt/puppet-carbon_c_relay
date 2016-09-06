@@ -7,7 +7,7 @@ After=network.target
 User=<%= @user %>
 Group=<%= @group %>
 EnvironmentFile=<%= @sysconfig_file %>
-ExecStart=/bin/carbon-c-relay -f <%= @config_file %> $ARGS
+ExecStart=/usr/bin/carbon-c-relay -f <%= @config_file %> $ARGS
 ExecReload=/bin/kill -HUP ${MAINPID}
 Type=simple
 <% if @limit_fsize -%>
