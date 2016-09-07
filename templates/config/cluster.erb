@@ -10,7 +10,7 @@ cluster <%= @cluster_name %>
   <%= @channel %>
   <%- end -%>
   <%- @hosts.each do | host | -%>
-    <%= host['host'] %>:<%= host['port'] %><%if host['alias'] %>=<%= host['alias'] %><% end %><% if host['proto'] %> <%= host['proto'] %><% end %>
+    <%= host['host'] %>:<%= host['port'] %><%if host['alias'] %>=<%= host['alias'] %><% end %><% if host['proto'] %> proto <%= host['proto'] %><% end %>
   <%- end -%>
   ;
 <% end -%>
